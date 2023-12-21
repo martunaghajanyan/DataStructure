@@ -1,0 +1,25 @@
+#include <iostream>
+#include <set>
+#include <vector>
+
+std::set<int> noRepetition(std::vector<int>& v)
+{
+  std::set<int> s;
+  for(auto elem : v)
+  {
+    s.insert(elem);
+  }
+  return s;
+}
+
+int main() 
+{
+  std::vector<int> v = {1,4,5,8,9,1,1,3,4};
+  std::set<int> s;
+  s = noRepetition(v);
+  for(auto elem : s)
+  {
+    std::cout << elem << " ";
+  }
+  
+}
