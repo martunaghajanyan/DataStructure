@@ -1,0 +1,91 @@
+#include <iostream>
+#include <set>
+#include <vector>
+
+std::set<int> nonDoubleElem(std::vector<int> &v) 
+{
+  std::set<int> s;
+  for (int i = 0; i < v.size(); ++i) 
+  {
+    s.insert(v[i]);
+  }
+  return s;
+}
+
+bool f(std::set<int> &s, int x) 
+{
+  for (auto it = s.begin(); it != s.end(); ++it) 
+  {
+    if (*it == x) 
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+std::set<int> unit(std::set<int> &s1, std::set<int> &s2) 
+{
+  std::set<int> s;
+  for (auto it = s1.begin(); it != s1.end(); ++it) 
+  {
+    s.insert(*it);
+  }
+  for (auto it = s2.begin(); it != s2.end(); ++it) 
+  {
+    s.insert(*it);
+  }
+  return s;
+}
+
+std::set<int> intersection(std::set<int> &s1, 
+                           std::set<int> &s2) 
+{
+  std::set<int> s;
+  for (auto it = s1.begin(); it != s1.end(); ++it) 
+  {
+    for (auto it2 = s2.begin(); it2 != s2.end(); ++it2) 
+    {
+      if (*it == *it2) {
+        s.insert(*it);
+      }
+    }
+  }
+  return s;
+}
+
+int main() 
+{
+  std::set<int> s;
+  std::vector<int> v = {1, 2, 3, 3, 3, 3, 7, 8};
+  s = nonDoubleElem(v);
+  for (auto elem : s) {
+    std::cout << elem << " ";
+  }
+  std::cout << std::endl;
+
+  std::set<int> s2 = {1, 4, 5, 78, 5};
+  int n = 4;
+  std::cout << f(s2, n) << std::endl;
+
+  std::set<int> s3 = {1, 5, 7, 4, 5, 6, 8};
+  std::set<int> s4 = {1, 6, 4, 8, 9, 0, 12};
+
+  std::set<int> s5 = unit(s3, s4);
+
+  for (auto elem : s5) {
+    std::cout << elem << " ";
+  }
+
+  std::cout << std::endl;
+
+  std::set<int> s6 = {1, 5, 7, 4, 5, 6, 8};
+  std::set<int> s7 = {1, 6, 4, 8, 9, 0, 12};
+
+  std::set<int> s8 = intersection(s6, s7);
+  for (auto elem : s8) {
+    std::cout << elem << " ";
+  }
+  std::cout << std::endl;
+
+}
